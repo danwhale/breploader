@@ -3,7 +3,6 @@
 
 #include <Eigen/Core>
 #include <assert.h>
-#include <parasolid.h>
 #include <gp_Pnt.hxx>
 #include <gp_Mat.hxx>
 #include <BRepGProp.hxx>

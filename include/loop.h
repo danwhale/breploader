@@ -1,7 +1,6 @@
 #ifndef LOOP_H_INCLUDED
 #define LOOP_H_INCLUDED 1
 
-#include <parasolid.h>
 #include "types.h"
 #include <assert.h>
 #include <Eigen/Core>
