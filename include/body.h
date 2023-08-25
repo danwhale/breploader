@@ -1,7 +1,6 @@
 #ifndef BODY_H_INCLUDED
 #define BODY_H_INCLUDED 1
 
-#include <parasolid.h>
 #include <TopoDS_Shape.hxx>
 #include "face.h"
 #include "loop.h"
@@ -39,30 +38,6 @@ public:
 
     virtual void debug() = 0;
 };
-
-class PSBody: public Body {
-public:
-    PSBody(int id);
-    ~PSBody();
-
-    BREPTopology GetTopology();
-
-    MassProperties GetMassProperties(double accuracy = MASS_ACC);
-
-    Eigen::MatrixXd GetBoundingBox();
-
-    int Transform(const Eigen::MatrixXd& xfrm);
-
-    void Tesselate(
-        Eigen::MatrixXd& V,
-        Eigen::MatrixXi& F,
-        Eigen::VectorXi& FtoT,
-        Eigen::MatrixXi& EtoT,
-        Eigen::VectorXi& VtoT,
-        bool set_quality = false,
-        double quality = 0.01);
-
-    void debug();
 
 private:
     int _id;
@@ -104,10 +79,6 @@ private:
 
 // Helper Functions
 std::vector<std::shared_ptr<Body> > read_file(std::string path);
-
-// PSBody Helper Functions
-bool is_psbody(int id);
-std::vector<std::shared_ptr<Body> > read_xt(std::string path);
 
 // OCCTBody Helper Functions
 std::vector<std::shared_ptr<Body> > read_step(std::string path);
