@@ -33,7 +33,6 @@ struct TopoRelation {
         _parent = parent;
         _child = child;
         _sense = TopoRelationSense::None;
-        }
     }
 
     int _parent;
