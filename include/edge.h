@@ -81,7 +81,7 @@ struct OCCTEdge: public Edge {
         std::vector<Eigen::VectorXd>& samples,
         Eigen::Vector2d& t_range) override;
 
-    override bool sample_curve(
+    bool sample_curve(
         const int N_samples, // N
         Eigen::Vector2d& t_bounds,
         Eigen::MatrixXd& t_samples // (Nx6) x,y,z,t_x,t_y,t_z
