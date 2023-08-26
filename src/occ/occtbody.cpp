@@ -144,7 +144,7 @@ BREPTopology OCCTBody::GetTopology() {
                 TopoDS_Shape wire = explorer.Current();
                 child = topology.pk_to_idx[_shape_to_idx[wire]];
 
-                topology.face_to_loop.emplace_back(parent, child, TopoRelationSense::None);
+                topology.face_to_loop.emplace_back(parent, child, int 0);
                 face_to_loops[parent].push_back(child);
 
                 explorer.Next();
@@ -181,10 +181,10 @@ BREPTopology OCCTBody::GetTopology() {
                 TopoDS_Edge edge = wire_explorer.Current();
                 TopAbs_Orientation orientation = wire_explorer.Orientation();
                 child = topology.pk_to_idx[_shape_to_idx[edge]];
-                TopoRelationSense sense =
-                    orientation == TopAbs_FORWARD ? TopoRelationSense::Positive :
-                    orientation == TopAbs_REVERSED ? TopoRelationSense::Negative :
-                    TopoRelationSense::None;
+                int sense =
+                    orientation == TopAbs_FORWARD ? 1 :
+                    orientation == TopAbs_REVERSED ? -1 :
+                    0;
                 topology.loop_to_edge.emplace_back(parent, child, sense);
                 loop_to_edges[parent].push_back(child);
 
@@ -470,7 +470,7 @@ void OCCTBody::debug() {
         0, 1, 0, 0.0,
         0, 0, 1, 0.0,
         0, 0, 0, 0.5;
-    err = Transform(xfrm);
+    int err = Transform(xfrm);
     std::cout << "xfrm error = " << err << std::endl;
     auto topo_xfrmed = GetTopology();
     auto mass_xfrmed = GetMassProperties();
