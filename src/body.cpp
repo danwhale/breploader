@@ -17,8 +17,6 @@ std::vector<std::shared_ptr<Body>> read_file(std::string path) {
         return read_step(path);
     }
 
-    std::string ext = get_extension(path);
-
     else if (ext == "step" || ext == "stp") {
         return read_step(path);
     }
