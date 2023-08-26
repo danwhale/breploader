@@ -39,11 +39,6 @@ public:
     virtual void debug() = 0;
 };
 
-private:
-    int _id;
-    bool _valid; // If we need to re-compute due to transforms
-};
-
 class OCCTBody: public Body {
 public:
     OCCTBody(const TopoDS_Shape& shape);
