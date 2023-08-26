@@ -27,29 +27,6 @@ enum class TopoRelationSense
     Positive
 };
 
-struct TopoRelation {
-
-    TopoRelation(int parent, int child, int sense) {
-        _parent = parent;
-        _child = child;
-        switch (sense) {
-        case PK_TOPOL_sense_negative_c:
-            _sense = TopoRelationSense::Negative;
-            break;
-        case PK_TOPOL_sense_positive_c:
-            _sense = TopoRelationSense::Positive;
-            break;
-        default:
-            _sense = TopoRelationSense::None;
-            break;
-        }
-    }
-
-    int _parent;
-    int _child;
-    TopoRelationSense _sense;
-};
-
 struct BREPTopology {
 
     // Node Lists
@@ -78,15 +55,6 @@ struct BREPTopology {
     std::map<int, std::vector<int> > loop_edge;
     std::map<int, std::vector<int> > loop_vertex;
     std::map<int, std::vector<int> > edge_vertex;
-
-    
-    // TODO: rename to remove Parasolid specificity
-    // Parasolid Entity Id -> Topology Idx w/in typed list
-    // (e.g. faces[5])
-    std::map<int, int> pk_to_idx;
-    // Parasolid Entity Id -> Parasolid Class
-    // PK_CLASS_face/loop/edge/vertex
-    std::map<int, int> pk_to_class;
 };
 
 }
