@@ -144,7 +144,7 @@ BREPTopology OCCTBody::GetTopology() {
                 TopoDS_Shape wire = explorer.Current();
                 child = topology.pk_to_idx[_shape_to_idx[wire]];
 
-                topology.face_to_loop.emplace_back(parent, child, int 0);
+                topology.face_to_loop.emplace_back(parent, child, 0);
                 face_to_loops[parent].push_back(child);
 
                 explorer.Next();
@@ -209,7 +209,7 @@ BREPTopology OCCTBody::GetTopology() {
                 TopoDS_Shape vertex = explorer.Current();
                 child = topology.pk_to_idx[_shape_to_idx[vertex]];
 
-                topology.edge_to_vertex.emplace_back(parent, child, TopoRelationSense::None);
+                topology.edge_to_vertex.emplace_back(parent, child, 0);
                 edge_to_vertices[parent].push_back(child);
 
                 explorer.Next();
