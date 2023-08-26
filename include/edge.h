@@ -54,37 +54,6 @@ struct Edge {
     ) = 0;
 };
 
-struct PSEdge: public Edge {
-    PSEdge(int id, std::string export_id);
-
-    void init_bb();
-    void init_nabb();
-
-    void init_line();
-    void init_circle();
-    void init_ellipse();
-
-    std::vector<Inference> get_inferences() override;
-
-    void add_inferences_circle_or_ellipse(std::vector<Inference>& inferences);
-    void add_inferences_line(std::vector<Inference>& inferences);
-    void add_inferences_other(std::vector<Inference>& inferences);
-
-    int _id;
-    int _curve;
-
-    void sample_points(
-        const int num_points,
-        const bool sample_tangents,
-        std::vector<Eigen::VectorXd>& samples,
-        Eigen::Vector2d& t_range) override;
-    
-    bool sample_curve(
-        const int N_samples, // N
-        Eigen::Vector2d& t_bounds,
-        Eigen::MatrixXd& t_samples // (Nx6) x,y,z,t_x,t_y,t_z
-    );
-};
 
 struct OCCTEdge: public Edge {
     OCCTEdge(const TopoDS_Shape& shape, const TopTools_ListOfShape& faces);

@@ -29,14 +29,6 @@ struct Loop {
     Eigen::MatrixXd na_bounding_box;
 };
 
-struct PSLoop: public Loop {
-    PSLoop(int id, std::string export_id);
-
-    std::vector<Inference> get_inferences() override;
-
-    int _id;
-};
-
 struct OCCTLoop: public Loop {
     OCCTLoop(const TopoDS_Shape& shape, const TopTools_ListOfShape& faces);
 

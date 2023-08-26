@@ -16,14 +16,6 @@ struct Vertex {
 
 };
 
-struct PSVertex: public Vertex {
-    PSVertex(int id, std::string export_id);
-
-    int _id;
-
-    std::vector<Inference> get_inferences() override;
-};
-
 struct OCCTVertex: public Vertex {
     OCCTVertex(const TopoDS_Shape& shape);
 
