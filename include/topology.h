@@ -27,6 +27,30 @@ enum class TopoRelationSense
     Positive
 };
 
+struct TopoRelation {
+
+    TopoRelation(int parent, int child, int sense) {
+        _parent = parent;
+        _child = child;
+        switch (sense) {
+        case PK_TOPOL_sense_negative_c:
+            _sense = TopoRelationSense::Negative;
+            break;
+        case PK_TOPOL_sense_positive_c:
+            _sense = TopoRelationSense::Positive;
+            break;
+        default:
+            _sense = TopoRelationSense::None;
+            break;
+        }
+    }
+
+    int _parent;
+    int _child;
+    TopoRelationSense _sense;
+};
+
+
 struct BREPTopology {
 
     // Node Lists
