@@ -84,29 +84,6 @@ const double XFRM_TOL = 0.999;
 const double MASS_ACC = 0.999;
 
 struct MassProperties {
-    MassProperties(int* ids, double accuracy = MASS_ACC, int num_ids = 1) {
-        PK_ERROR_t err = PK_ERROR_no_errors;
-        PK_TOPOL_eval_mass_props_o_t mass_props_options;
-        PK_TOPOL_eval_mass_props_o_m(mass_props_options);
-
-        m_of_i.resize(3, 3);
-
-        err = PK_TOPOL_eval_mass_props(num_ids, ids, accuracy,
-            &mass_props_options,
-            &amount,
-            &mass,
-            c_of_g.data(),
-            m_of_i.data(),
-            &periphery);
-        assert(err == PK_ERROR_no_errors || err == PK_ERROR_missing_geom); // PK_TOPOL_eval_mass_props
-        if (err == PK_ERROR_missing_geom) {
-            amount = 0;
-            mass = 0;
-            c_of_g.setZero();
-            m_of_i = Eigen::MatrixXd::Zero(3, 3);
-            periphery = 0;
-        }
-    }
 
     MassProperties(const TopoDS_Shape& shape, double accuracy = MASS_ACC) {
         m_of_i.resize(3, 3);
