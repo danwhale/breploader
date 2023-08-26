@@ -203,6 +203,8 @@ BREPTopology OCCTBody::GetTopology() {
             while (explorer.More()) {
                 TopoDS_Shape vertex = explorer.Current();
                 child = topology.pk_to_idx[_shape_to_idx[vertex]];
+
+                topology.edge_to_vertex.emplace_back(parent, child, PK_TOPOL_sense_none_c);
                 edge_to_vertices[parent].push_back(child);
 
                 explorer.Next();
