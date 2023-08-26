@@ -181,7 +181,10 @@ BREPTopology OCCTBody::GetTopology() {
                 TopoDS_Edge edge = wire_explorer.Current();
                 TopAbs_Orientation orientation = wire_explorer.Orientation();
                 child = topology.pk_to_idx[_shape_to_idx[edge]];
-
+                TopoRelationSense sense =
+                    orientation == TopAbs_FORWARD ? TopoRelationSense::Positive :
+                    orientation == TopAbs_REVERSED ? TopoRelationSense::Negative :
+                    TopoRelationSense::None;
                 topology.loop_to_edge.emplace_back(parent, child, sense);
                 loop_to_edges[parent].push_back(child);
 
